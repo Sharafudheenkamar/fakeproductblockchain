@@ -1,0 +1,29 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+table {
+border: 1px solid burlywood;
+padding: 10px;
+border-collapse:collapse ;
+margin-bottom: 15px;
+}
+th, td {
+    padding: 10px;
+    border: 1px solid burlywood;
+}
+button {
+    margin-right: 10px;
+    transition: 0.5s ;
+    
+}
+button:hover{
+    transform: scale(1.2);
+}
+table{
+    margin-bottom: 15px;
+    text-align: center;
+
+}

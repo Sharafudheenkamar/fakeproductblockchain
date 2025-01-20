@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/approve.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<body>
+    <table >
+        <tr>
+            <th>ID</th>
+            <th>Company Name</th>
+            <th>Company Address</th>
+            <th>Email</th>
+            <th>Phone No</th>
+            <th>approve / reject</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>abc</td>
+            <td>kerala</td>
+            <td>mkk@gmail.com</td>
+            <td>123456709</td>
+            <td>
+                <button>
+                    <i class="material-icons">verified</i>
+                </button>
+                <button>
+                    <i class="material-icons">delete</i>
+                </button>
+            </td>
+        </tr>
+        
+    </table>
+</body>
+</html>

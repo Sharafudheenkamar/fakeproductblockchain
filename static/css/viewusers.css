@@ -1,0 +1,15 @@
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+table {
+    border: 1px solid rgba(16, 17, 12, 0.096);
+    padding: 10px;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 10px;
+    border: 1px solid burlywood;
+}

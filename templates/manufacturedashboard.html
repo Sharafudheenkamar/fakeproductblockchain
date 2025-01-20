@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fake Product Detection - PureVerify</title>
+    <link rel="stylesheet" href="{% static 'css/adminDashboard.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=visibility" />
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="{% static 'css/logo.jpg' %}" alt="Logo">
+                <span class="logo-text">PureVerify</span> 
+            </div>
+            <ul class="nav-links">
+                <a href="login.html"><i class="material-icons">logout</i></a>
+                <a href="/AddProduct/"><i class="material-icons">add</i></a>
+                <a href="/ViewAddProduct/"><span class="material-symbols-outlined">
+                    visibility
+                    </span></a>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section class="intro">
+            <div class="intro-text">
+                <h1>Ensure Authenticity with PureVerify</h1>
+                <p>Our platform provides robust tools to help manufacturers, retailers, and consumers detect counterfeit products. By using cutting-edge verification techniques, PureVerify ensures that the products you purchase are authentic and safe.</p>
+            </div>
+        </section>
+        
+        <section class="feature-blocks">
+            <div class="feature">
+                <h2>Why Fake Product Detection Matters</h2>
+                <p>Fake products not only pose a significant threat to consumer safety but also tarnish the reputation of legitimate manufacturers. Our platform uses blockchain technology and AI-driven analytics to help users verify the authenticity of their purchases.</p>
+            </div>
+            <div class="feature">
+                <h2>How PureVerify Works</h2>
+                <p>With PureVerify, simply scan the product's unique QR code or enter the serial number into our system. We’ll provide instant verification using our extensive database of authenticated product information.</p>
+            </div>
+            <div class="feature">
+                <h2>Real-Time Alerts</h2>
+                <p>Stay informed with real-time alerts when a potentially fake product is detected. Our system instantly notifies the consumer and the manufacturer for quick action, preventing further damage.</p>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

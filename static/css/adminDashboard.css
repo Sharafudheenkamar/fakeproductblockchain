@@ -1,0 +1,175 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+.navbar {
+    background-color: khaki;
+    color: black;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo img {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    border: 2px solid white;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.logo-text {
+    color: black;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}
+
+.nav-links a {
+    display: block;
+    color: darkgray;
+    padding: 10px;
+    text-decoration: none;
+    transition: all 0.3s ease; 
+    position: relative; 
+}
+
+
+.nav-links a:hover {
+    background-color: rgba(0, 0, 0, 0.237);
+    color: white;
+    transform: translateY(-5px); 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.7); 
+}
+
+
+.nav-links a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 0;
+    height: 2px;
+    background-color: white;
+    transition: width 0.3s ease-in-out;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.nav-links .material-icons {
+    font-size: 30px;
+    color: blue;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+
+.intro {
+    margin-top: 80px;
+    background-color: beige;
+    padding: 50px;
+    text-align: center;
+}
+
+.intro-text h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: black;
+}
+
+.intro-text p {
+    font-size: 18px;
+    color: gray;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+
+.feature-blocks {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px;
+}
+
+.feature {
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 30px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    max-width: 800px;
+    width: 100%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    animation: fadeIn 0.5s ease-in-out; /* Adding fade-in animation */
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    100% {
+        opacity: 10;
+        transform: scale(1);
+    }
+}
+
+.feature:hover {
+    transform: translateY(-10px); 
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); 
+}
+
+.feature h2 {
+    font-size: 28px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.feature p {
+    font-size: 16px;
+    color: #666;
+    line-height: 1.6;
+}
+
+
+@media (min-width: 768px) {
+    .feature-blocks {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+
+    .feature {
+        max-width: 30%;
+    }
+}

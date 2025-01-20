@@ -1,0 +1,235 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="login.html">
+    <style>
+      * {
+        margin: 0;
+        font-family: "Inconsolata", sans-serif;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
+        body {
+            height: 100%;
+            overflow-x: hidden;
+        }
+
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.8); 
+            color: white;
+            padding:  20px;
+            display:flex;
+            justify-content: space-between;
+            position: fixed;
+            width: 100%;
+            top: 0;
+                }
+
+        .logo {
+            display: flex;
+            justify-content: center;
+        }
+
+        .logo img {
+            height: 30px; 
+            width: 30px;
+            border-radius: 50%; 
+            border: 2px solid white;
+            object-fit: cover; 
+        }
+
+        .logo-text {
+            color: white;
+            margin-left: 15px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links li {
+            position: relative;
+        }
+
+        .nav-links a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            margin-right: 40px;
+            text-decoration: none;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .nav-links a:hover {
+            background-color: #ddd;
+            color: black;
+            transform: scale(1.1); 
+        }
+
+        .bgimg {
+            height: 100vh;
+            width: 100vw;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            background-position: center;
+            background-size: cover;
+            opacity: 0;
+            transition: opacity 2s ease-in-out; 
+        }
+
+        .bgimg.visible {
+            opacity: 1;
+        }
+
+        .content {
+            text-align: center;
+            margin-top: 150px;
+            color: white;
+        }
+
+        .content h1 {
+            font-size: 3em;
+            margin: 0;
+        }
+
+        .content p {
+            font-size: 1.5em;
+        }
+
+        .dot-container {
+            position: absolute;
+            bottom: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+        }
+
+        .dot {
+            height: 15px;
+            width: 15px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .dot:hover {
+            transform: scale(1.3); 
+            background-color: white;
+        }
+
+        .dot.active {
+            background-color: white;
+        }
+        .marquee-container {
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+            position: fixed;
+            top: 60px; 
+            width: 100%;
+            z-index: 1000;
+        }
+
+        marquee {
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <img src=" {% static 'css/logo.jpg' %}" alt="logo">
+                <span class="logo-text">PureVerify</span>
+            </div>
+            <ul class="nav-links">
+    
+                <li><a href="login">Login</a></li> 
+                <li><a href="user_reg">Sign Up</a></li>
+                
+            </ul>
+        </nav>
+    </header>
+
+    <div class="marquee-container">
+        <marquee behavior="scroll"  direction="right">Welcome to our website! Stay tuned for updates and new features.</marquee>
+    </div>
+
+    <div class="bgimg visible" id="bgimg1"><img src="{% static 'css/ch1.jpg' %}"></div>
+    <div class="bgimg visible" id="bgimg2"><img src="{% static 'css/ch2.jpg' %}"></div>
+    <div class="bgimg visible" id="bgimg3"><img src="{% static 'css/ch3.jpg' %}"></div>
+    <div class="bgimg visible" id="bgimg4"><img src="{% static 'css/ch4.jpg' %}"></div>
+    <div class="bgimg visible" id="bgimg4"><img src="{% static 'css/ch4.jpg' %}"></div>
+
+    <div class="content">
+        <h1>Fake Product Detection</h1>
+        <p>Blockchain based application for detecting Fake products </p><p>Customers Can Get Genuine Products</p>
+    </div>
+
+    <div class="dot-container">
+        <span class="dot" onclick="selectImage(0)"></span>
+        <span class="dot" onclick="selectImage(1)"></span>
+        <span class="dot" onclick="selectImage(2)"></span>
+        <span class="dot" onclick="selectImage(3)"></span>
+        <span class="dot" onclick="selectImage(4)"></span>
+    </div>
+
+    <script>
+        const images = document.querySelectorAll('.bgimg');
+        const dots = document.querySelectorAll('.dot');
+        let currentIndex = 0;
+        let interval;
+
+        function updateBackgroundImage() {
+            images.forEach((img, index) => {
+                img.classList.toggle('visible', index === currentIndex);
+            });
+            updateActiveDot();
+        }
+
+        function selectImage(index) {
+            currentIndex = index;
+            updateBackgroundImage();
+            restartAutoSlide();
+        }
+
+        function updateActiveDot() {
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentIndex);
+            });
+        }
+
+        function autoSlide() {
+            currentIndex = (currentIndex + 1) % images.length;
+            updateBackgroundImage();
+        }
+
+        function restartAutoSlide() {
+            clearInterval(interval);
+            interval = setInterval(autoSlide, 5000); 
+        }
+
+        updateBackgroundImage();
+        interval = setInterval(autoSlide, 5000); 
+    </script>
+</body>
+</html>

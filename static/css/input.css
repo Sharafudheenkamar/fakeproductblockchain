@@ -1,0 +1,43 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: Arial, sans-serif;
+    background-image: url('skin.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    backdrop-filter: blur;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    }
+    .Register-container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height:100%
+    }
+    .header h1{
+        text-align: center;
+        margin-bottom: 15px;
+        margin-left: 130px;
+    }
+    .card{
+        
+       backdrop-filter: blur(6px);
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgb(137, 151, 171);
+        max-width: 400px;
+        width: 200%;
+    }   
+    .form-group{
+        margin-bottom: 20px; 
+        justify-content: center;
+      
+    }
+    input

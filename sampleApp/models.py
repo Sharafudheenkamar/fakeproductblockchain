@@ -19,6 +19,7 @@ class UserTable(models.Model):
     
 
 class ManufactureTable(models.Model):
+    LOGINID=models.ForeignKey(LoginTable,on_delete=models.CASCADE,null=True,blank=True)
     CompanyName = models.CharField(max_length=100, null=True, blank=True)
     CompanyAddress = models.CharField(max_length=100, null=True, blank=True)
     Email = models.CharField(max_length=100, null=True, blank=True)

@@ -9,6 +9,8 @@ urlpatterns = [
     path('Add_Page/', AddPage.as_view(),name="Add_Page"),
     path('AdminDashboardPage/', AdminDashboardPage.as_view(),name="AdminDahboard_Page"),
     path('ApprovePage/', ApprovePage.as_view(),name="Approve_page"),
+    path('Accept_Man/<int:id>/',Accept_Man.as_view(),name='Accept_Man'),
+    path('Reject_Man/<int:id>/',Reject_Man.as_view(),name='Reject_Man'),
     path('user_reg/', UserReg.as_view(),name="user_reg"),
     path('manufacture/', Manufacture.as_view(),name="manufacture"),
     path('ManufactureDashboardPage/',ManufactureDashboardPage.as_view(),name='ManufactureDashboardPage'),
@@ -19,7 +21,7 @@ urlpatterns = [
     path('FeedBack/',viewFeedBack.as_view(),name="feedback"),
     ###############api##################
     path('register/', UserRegistration.as_view(), name='user_registration'),
-    path('loginapi/',LoginPage.as_view(),name='LoginPage'),
+    path('loginapi/',Loginapi.as_view(),name='Loginapi'),
      path('addfeedback/', FeedBackCreateAPIView.as_view(), name='add-feedback'),
 
     path('check_product/<str:product_id>/', CheckProductInBlock.as_view(), name='check_product_in_block'),

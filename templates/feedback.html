@@ -1,10 +1,11 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="viewusers.css">
+    <link rel="stylesheet" href="{% static 'css/viewusers.css' %}">
 </head>
 <body>
     <table>
@@ -15,8 +16,8 @@
         </tr>
         {% for i in v %}
         <tr>
-            <td>{{i.feedback}}</td>
-            <td>{{i.rating}}</td>
+            <td>{{i.FeedBack}}</td>
+            <td>{{i.Rating}}</td>
         </tr>
         {% endfor%}
     </table>

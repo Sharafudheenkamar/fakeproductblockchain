@@ -32,8 +32,10 @@ class LoginPage(View):
             login_obj = LoginTable.objects.get(UserName=UserName, PassWord=PassWord)
             if login_obj.type == "admin":
                 return HttpResponse('''<script>window.location="/AdminDashboardPage/"</script>''')
-            if login_obj.type == "manufacture":
+            elif login_obj.type == "manufacture":
                 return HttpResponse('''<script>window.location="/ManufactureDashboardPage/"</script>''')
+            else:
+                return HttpResponse('''<script>alert('contact admin for approval');window.location="/"</script>''')
         except LoginTable.DoesNotExist:
             return HttpResponse('''<script>alert('invalid username and password');window.location="/"</script>''')
 
@@ -49,7 +51,8 @@ class ManufactureDashboardPage(View):
         return render(request, "manufacturedashboard.html")
 class ApprovePage(View):
      def get(self, request):
-        return render(request, "approve.html")
+        v=ManufactureTable.objects.all()
+        return render(request,'approve.html',{'man':v})
      
 class UserReg(View):
      def get(self, request):
@@ -57,8 +60,12 @@ class UserReg(View):
      def post(self, request):
          form = manufactureform(request.POST)
          if form.is_valid():
-             form.save()
-             return HttpResponse('''<script>alert("registered");window.location=("/")</script>''')
+            c=form.save(commit=False)
+            d=LoginTable.objects.create(UserName=request.POST['username'],PassWord=request.POST['password'],type='pending')
+            print(d)
+            c.LOGINID=d
+            c.save()
+            return HttpResponse('''<script>alert("registered");window.location=("/")</script>''')
 class Manufacture(View):
     def get(self, request):
         return render(request, "manufacture.html")
@@ -66,12 +73,15 @@ class Manufacture(View):
          print("hhhhh")
          form = manufactureform(request.POST)
          if form.is_valid():
-             form.save()
-             return HttpResponse('''<script>alert("registered");window.location=("/")</script>''')
+            c=form.save(commit=False)
+            d=LoginTable.objects.create(UserName=request.POST['username'],PassWord=request.POST['password'],type='pending')
+            c.LOGINID=d
+            c.save()
+            return HttpResponse('''<script>alert("registered");window.location=("/")</script>''')
 class Viewmanufacture(View):
     def get(self,request):
         v=ManufactureTable.objects.all()
-        return render(request,'viewmanufacture.html',{'v':v})
+        return render(request,'viewmanufacture.html',{'man':v})
 
 
 
@@ -191,22 +201,22 @@ class viewFeedBack(View):
 
 
          
-class Accept_CameraMan(View):
-    def get(self, request, C_id):
-            Cam = ManufactureTable.objects.get(id=C_id)
+class Accept_Man(View):
+    def get(self, request, id):
+            Cam = ManufactureTable.objects.get(id=id)
             print(Cam)  # Fetch the instance
-            Cam.LOGINID.user_type = 'CameraMan'  # Update the status
+            Cam.LOGINID.type = 'CameraMan'  # Update the status
             Cam.LOGINID.save()  # Save the changes
-            return HttpResponse('''<script>alert("successfully Accepted");window.location="/Verify_Cameraman"</script>''')  
+            return HttpResponse('''<script>alert("successfully Accepted");window.location="/ApprovePage/"</script>''')  
 
         
 
 class Reject_Man(View):
-    def get(self, request, C_id):
-            Cam = ManufactureTable.objects.get(id=C_id)  # Fetch the instance
-            Cam.LOGINID.user_type = 'Rejected'  # Update the status
+    def get(self, request, id):
+            Cam = ManufactureTable.objects.get(id=id)  # Fetch the instance
+            Cam.LOGINID.type = 'Rejected'  # Update the status
             Cam.LOGINID.save()  # Save the changes
-            return HttpResponse('''<script>alert("successfully Rejected");window.location="/"Verify_Cameraman</script>''')  
+            return HttpResponse('''<script>alert("successfully Rejected");window.location="/ApprovePage/"</script>''')  
         
     
 
@@ -251,7 +261,7 @@ class UserRegistration(APIView):
             {"message": "Error in registration", "errors": userserializer.errors},
             status=status.HTTP_400_BAD_REQUEST,
         )
-class LoginPage(APIView):
+class Loginapi(APIView):
     def post(self, request):
         response_dict = {}
 

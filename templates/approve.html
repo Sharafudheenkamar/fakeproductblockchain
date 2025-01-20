@@ -16,23 +16,29 @@
             <th>Company Address</th>
             <th>Email</th>
             <th>Phone No</th>
+            <th>status</th>
             <th>approve / reject</th>
         </tr>
+        {% for i in man %}
         <tr>
-            <td>1</td>
-            <td>abc</td>
-            <td>kerala</td>
-            <td>mkk@gmail.com</td>
-            <td>123456709</td>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.CompanyName}}</td>
+            <td>{{i.CompanyAddress}}</td>
+            <td>{{i.Email}}</td>
+            <td>{{i.phone}}</td>
+            <td>{{i.LOGINID.type}}</td>
             <td>
-                <button>
+                <a href="/Accept_Man/{{i.id}}/">                <button>
                     <i class="material-icons">verified</i>
-                </button>
-                <button>
+                </button></a>
+
+                <a href="/Reject_Man/{{i.id}}/">                <button>
                     <i class="material-icons">delete</i>
-                </button>
+                </button></a>
+
             </td>
         </tr>
+        {% endfor %}
         
     </table>
 </body>
